@@ -98,8 +98,6 @@
 	    border-color: #C9C9C9;
 	    color: #333;
 		}
-	
-	    
 	</style>
 	<script type="text/javascript" src="<%=path%>/third/layui/layui.js"></script>
 </head>
@@ -148,7 +146,6 @@
             laydate.render({elem: '#visitTime',type:'datetime'})
             let code = '${casPatient.patientCode}';
             //let code = ${casPatient.patientCode};
-            
             //let Code = ${patientCode};
             // 异步 post请求 （get/post） $.post(url,{id:content},function(res){})
             $.post("<%=basePath%>bizJson/CasPatient_patientList.action",
@@ -200,7 +197,8 @@
                     html += "<div class=\"layui-colla-item\">\n" +
                         "\t\t\t\t\t<h2 class=\"layui-colla-title\">病例"+index+"：<span>"+time+"</span><div style=\"float: right;\"><a class=\"tablelink operator-btn\" data-type=\"edit\" data-info="+j.id+">修改</a>&nbsp;"+
 						"<a href=\"javascript:;\" class=\"tablelinkdelete operator-btn\" style=\"color: red\" data-type=\"tablelinkdelete\" data-info="+j.id+"> 删除</a></div></h2>\n"+
-                        "\t\t\t\t\t<div class=\"layui-colla-content\">\n" +
+						/* "<a href=\"javascript:;\" class=\"tablelinkdelete operator-btn\" style=\"color: red\" data-type=\"tablelinkdelete\" data-info="+j.id+"> 删除</a></div></h2>\n"+ */
+						"\t\t\t\t\t<div class=\"layui-colla-content\">\n" +
                         "\t\t\t\t\t\t<ul class=\"forminfo\">\n" +
                         "\t\t\t\t\t\t\t<li><label>就诊时间：</label><span>"+j.visitime+"</span></li>\n" +
                         "\t\t\t\t\t\t\t<li><label>脈象：</label><span>"+j.pulse+"</span></li>\n" +
@@ -405,17 +403,27 @@
                         }
 					})
                 },
-                tablelinkdelete: function(id){
-                	layer.confirm('是否确认删除信息 ？&n如果是请点击确定按钮 ，否则请点取消。', {icon: 3, title:'提示信息'}, function(index){
-                		$.post('<%=basePath%>/bizJson/CasCase_delete.action',{id:id}, function(result){
-                     		if(result.code == 0){
-                                 active.getCases()
-                                 return;
-                     		}
-                	    });
-                		  layer.close(index);
-                	});
-                },
+              tablelinkdelete: function(id){
+        			$(".tablelinkdelete").click(function(){
+        				$(".tip").fadeIn(200);});
+        						$(".tiptop a").click(function() {
+        							$(".tip").fadeOut(200);
+        						});
+
+        						$(".sure").click(function() {
+        							$(".tip").fadeOut(100);
+        							$.post('<%=basePath%>/bizJson/CasCase_delete.action',{id:id}, function(result){
+        	                     		if(result.code == 0){
+        	                                 active.getCases()
+        	                                 return;
+        	                     		}
+        	                	    });
+        						});
+
+        						$(".cancel").click(function() {
+        							$(".tip").fadeOut(100);
+        						});
+                     		}, 
                 getCases: function () {
                     $.post("<%=basePath%>bizJson/CasCase_list.action",{patientCode:$('.patientCode').text()},function(res){
                         let html = "";
@@ -423,9 +431,10 @@
                             let index = i + 1;
                             let time = layui.util.toDateString(j.visitime);
                             html += "<div class=\"layui-colla-item\">\n" +
-                                "\t\t\t\t\t<h2 class=\"layui-colla-title\">病例"+index+"：<span>"+time+"</span></h2>\n" +
-                                "\t\t\t\t\t<div class=\"layui-colla-content\">\n" +
-                                "\t\t\t\t\t\t<ul class=\"forminfo\">\n" +
+                            "\t\t\t\t\t<h2 class=\"layui-colla-title\">病例"+index+"：<span>"+time+"</span><div style=\"float: right;\"><a class=\"tablelink operator-btn\" data-type=\"edit\" data-info="+j.id+">修改</a>&nbsp;"+
+                            "<a href=\"javascript:;\" class=\"tablelinkdelete operator-btn\" style=\"color: red\" data-type=\"tablelinkdelete\" data-info="+j.id+"> 删除</a></div></h2>\n"+        
+                            "\t\t\t\t\t<div class=\"layui-colla-content\">\n" +
+                            "\t\t\t\t\t\t<ul class=\"forminfo\">\n" +
                                 "\t\t\t\t\t\t\t<li><label>就诊时间：</label><span>"+time+"</span></li>\n" +
                                 "\t\t\t\t\t\t\t<li><label>脈象：</label><span>"+j.pulse+"</span></li>\n" +
                                 "\t\t\t\t\t\t\t<li><label>舌质：</label><span>"+j.tongueQuality+"</span></li>\n" +
@@ -493,5 +502,23 @@
             });
         });
 	</script>
+		<div class="tip">
+		<div class="tiptop">
+			<span>提示信息</span><a></a>
+		</div>
+		<div class="tipinfo">
+			<span><img src="<%=basePath%>images/ticon.png" /></span>
+			<div class="tipright">
+				<p>是否确认删除信息 ？</p>
+				<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+			</div>
+		</div>
+
+		<div class="tipbtn">
+			<input name="" type="button" class="sure" value="确定" />&nbsp; <input
+				name="" type="button" class="cancel" value="取消" />
+		</div>
+
+	</div>
 </body>
 </html>

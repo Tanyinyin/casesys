@@ -1,4 +1,20 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.util.*" errorPage="" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>修改病人信息</title>
+	<script type="text/javascript" src="<%=path%>/third/layui/layui.js"></script>
+	<link href="<%=path%>/third/layui/css/layui.css" rel="stylesheet" type="text/css" />
+	 <script>
+	  //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
+	  layui.use(['common','form'], function(){
+		  var $ = layui.jquery, common = layui.common,form = layui.form;
+	      form.render();  
+	  });
+	  </script>
+</head>
+<body>
 <div id="add-form" style="display: none;margin: 10px;">
 	<form class="layui-form">
 		<div class="layui-form-item">
@@ -146,4 +162,6 @@
 		</div>
 	</form>
 </div>
+</body>
+</html>
 

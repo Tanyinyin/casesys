@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 普通操作（不纳入权限拦截的） -->
+	<package name="front" extends="base" namespace="/front">
+		<!--系统设置 -->
+		<action name="*_*" class="com.gxuwz.casesys.business.action.web.front.{1}Action" method="{2}">
+			<result name="success">${forwardView}</result>
+		</action>
+	</package>
+	
+	<!-- 定义系统设置模块 -->
+	<package name="biz" extends="base" namespace="/biz">
+	
+		<!--系统设置 -->
+		<action name="*_*" class="com.gxuwz.casesys.business.action.web.{1}Action" method="{2}">
+			<result name="success">${forwardView}</result>
+			<!-- 后续改为以下方式 -->
+			<!-- <result name="*" type="direct">通过Action直接返回，这一行无需修改</result> -->
+		</action>
+		 
+	</package>
+
+	<!-- 导出excel -->
+	<package name="excel" extends="base" namespace="/excel">
+		<action name="*_*" class="com.gxuwz.casesys.business.action.web.ExportExcelAction" method="{2}">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="inputName">excelStream</param>
+				</result>
+		</action>
+	</package>
+
+	<!-- json格式输出 -->
+    <package name="bizJson" namespace="/bizJson" extends="json-default">
+        <action name="*_*" class="com.gxuwz.casesys.business.action.web.{1}Action" method="{2}">
+            <result name="success" type="json">
+                <!--root是ognl表达式的一部分不能更换  -->
+                <param name="root">data</param>
+            </result>
+        </action>
+    </package>
+
+	<!-- 文件上传 -->
+	<package name="upload" extends="json-default" namespace="/upload">
+		<action name="*_*" class="com.gxuwz.casesys.business.action.web.{1}Action" method="{2}">
+			<!-- 指定（限制）上传文件的类型，定义局部拦截器，修改默认拦截器的属性
+                "fileUpload.maximumSize" ：限制上传最大的文件大小。
+                "fileUpload.allowedTypes"：允许上传文件的类型。
+                "fileUpload.allowedExtensions"：允许上传文件的可扩展文件类型。 -->
+			<interceptor-ref name="defaultStack">
+				<!-- 限制5MB大小 -->
+				<param name="fileUpload.maximumSize">5242880</param>
+				<param name="fileUpload.allowedTypes">text/plain,application/vnd.ms-powerpoint,image/jpg,image/pjpeg,image/png</param>
+				<param name="fileUpload.allowedExtensions">.txt,.ppt,.png,.jpg</param>
+			</interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>    

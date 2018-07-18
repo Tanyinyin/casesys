@@ -53,10 +53,7 @@
 		#add-form .layui-form-label span {
 			color:  red;
 		}
-		.layui-form-select dl dd.layui-this {
-   		background-color: #1E9FFF;
-    	color: #fff;
-		}
+
 		.layui-layer-btn1{
 	    height: 28px;
 	    line-height: 28px;
@@ -98,6 +95,11 @@
 	    border-color: #C9C9C9;
 	    color: #333;
 		}
+		.layui-this {
+	    background-color: #3eafe0;
+	    color: #fff;
+		}
+		
 	</style>
 	<script type="text/javascript" src="<%=path%>/third/layui/layui.js"></script>
 </head>
@@ -129,10 +131,6 @@
 			</ul>
 		</div>
 		<blockquote class="layui-elem-quote">病例信息<a class="layui-btn layui-btn-sm layui-btn layui-btn-primary operator-btn" data-type="add" style="float: right;"><img src="/CasesSys/images/t01.png" style="width: 16px;height: 16px;"/>添加病例</a></blockquote>
-	<!-- 	 -->
-<!--  <a class="layui-btn layui-btn-sm layui-btn-normal operator-btn" data-type="add" style="float: right;" >添加</a> -->
-<!-- <li class="clickk"><span><img src="/CasesSys/images/t01.png"></span>
-						<a href="http://127.0.0.1:8080/CasesSys//biz/CasCase_openMessage.action">添加病例</a></li> -->
 		<div class="case-msg">
 			<div class="layui-collapse">
 

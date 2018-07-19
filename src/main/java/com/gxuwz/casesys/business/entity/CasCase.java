@@ -86,7 +86,7 @@ public class CasCase implements java.io.Serializable {
 		this.bloodRoutine = bloodRoutine;
 		this.updateTime = updateTime;
 		this.status = status;
-		this.prescriptionName = prescriptionName;
+        this.prescriptionName = prescriptionName;
 	}
 
 	// Property accessors
@@ -292,7 +292,7 @@ public class CasCase implements java.io.Serializable {
 	public void setPrescriptionName(String prescriptionName) {
 		this.prescriptionName = prescriptionName;
 	}
-	
+
 	
 
 }

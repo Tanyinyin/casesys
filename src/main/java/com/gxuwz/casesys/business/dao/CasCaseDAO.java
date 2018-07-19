@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.gxuwz.casesys.business.constant.CasCaseConstant;
-import com.gxuwz.casesys.business.constant.CasPatientConstant;
 import com.gxuwz.casesys.business.entity.CasCase;
-import com.gxuwz.casesys.business.entity.CasPatient;
 import com.gxuwz.core.dao.impl.BaseDaoImpl;
 
 @Repository("casCaseDAO")

@@ -35,6 +35,7 @@ public class CasCase implements java.io.Serializable {
 	private String bloodRoutine;//血常规
 	private Date updateTime;//更新时间
 	private Integer status;//状态
+	private String prescriptionName;//处方名称
 
 	// Constructors
 
@@ -59,7 +60,7 @@ public class CasCase implements java.io.Serializable {
 	public CasCase(Integer id, String patientCode, Date visitime, String pulse, String tongueQuality, String fur,
 			String tongue, Integer sixChannel, Integer face, String cough, String excrement, String pee, String coldHot,
 			String sweat, String headBody, String diet, String thirsty, String ear, String earOil, String menstruation,
-			String liverFunction, String renalFunction, String bloodRoutine,Date updateTime, Integer status) {
+			String liverFunction, String renalFunction, String bloodRoutine,Date updateTime, Integer status, String prescriptionName) {
 		this.id = id;
 		this.patientCode = patientCode;
 		this.visitime = visitime;
@@ -85,6 +86,7 @@ public class CasCase implements java.io.Serializable {
 		this.bloodRoutine = bloodRoutine;
 		this.updateTime = updateTime;
 		this.status = status;
+		this.prescriptionName = prescriptionName;
 	}
 
 	// Property accessors
@@ -282,6 +284,15 @@ public class CasCase implements java.io.Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public String getPrescriptionName() {
+		return prescriptionName;
+	}
+
+	public void setPrescriptionName(String prescriptionName) {
+		this.prescriptionName = prescriptionName;
+	}
+	
 	
 
 }

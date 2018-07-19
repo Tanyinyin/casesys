@@ -128,5 +128,10 @@
                 <comment>状态</comment>
             </column>
         </property>
+        <property name="prescriptionName" type="java.lang.String" >
+            <column name="prescription_name">
+                <comment>处方名称</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

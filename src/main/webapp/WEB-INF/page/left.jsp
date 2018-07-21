@@ -54,5 +54,19 @@
                 </p:permissions>
             </ul>
         </dd>
+        <dd>
+            <div class="title">
+                <span><img src="images/leftico04.png"/> </span>数据字典
+            </div>
+            <ul class="menuson">
+                <p:permissions menu="addUser,editUser,deleteUsere">
+                    <li>
+                        <cite></cite><a href="<%=basePath%>/biz/CasPrescription_list.action"
+                                        target="rightFrame">处方管理</a><i></i>
+                    </li>	
+                </p:permissions>
+              
+            </ul>
+        </dd>
     </p:permissions>
 </dl>
